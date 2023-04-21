@@ -138,21 +138,23 @@
     </section>
 
     <section name="lang-select-mobile">
-        <div class="lang-description">
-            <form class="">
-                <select id="lang" class="select-lang">
-                    <option value="en">English</option>
-                    <option value="pt">Português</option>
-                    <option value="es">Español</option>
-                </select>
-                <button class="form-button" onclick="defineLang()">Confirmar</button>
-            </form>
+        <div class="lang-description-mob">
+            <div class="lang-description">
+                <form class="">
+                    <select id="lang" class="select-lang">
+                        <option value="en">English</option>
+                        <option value="pt">Português</option>
+                        <option value="es">Español</option>
+                    </select>
+                    <button class="form-button" onclick="defineLang()">Confirmar</button>
+                </form>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="footer-content">
-            <i class="fa-solid fa-language footer-icon" style="color: #7ed6ff;"></i>
+            <i class="fa-solid fa-language footer-icon" id="back-select-op" style="color: #7ed6ff;"></i>
             <i class="fa-brands fa-linkedin footer-icon"></i>
             <i class="fa-brands fa-github footer-icon"></i>
             <i class="fa-brands fa-instagram footer-icon"></i>
@@ -178,11 +180,13 @@
                         </div>`
 
         space.innerHTML += content;
+        document.getElementById("lang-description-mob") += content;
         linkOp.removeEventListener("click", appearSelect);
     }
 
     function removeSelect(){
         space.innerHTML+= '';
+        document.getElementById("lang-description-mob").innerHTML = "";
         linkOp.addEventListener("click", appearSelect);
     }
 
@@ -190,6 +194,7 @@
 
     function defineLang(){
         let lang = document.getElementById("lang").value;
+        localStorage.setItem('idiom', lang);
         space.innerHTML = "";
         removeSelect();
         translate(lang);
@@ -282,7 +287,7 @@
                 textknow: "Possuo conhecimento e experiência trabalhando com PHP Laravel e Python Django. Tenho conhecimento em banco de dados relacionais, desenvolvimento de APIs e aplicações em micros serviços. Tenho experiência com GIT e resolução de conflitos. Também tenho conhecimento em front-end, mais especificamente em React e BootStrap e desenvolvimento de aplicações responsivas e multiplataformas."
             }
         };
-        if(lang == 'en'){
+        if(lang == 'en' || localStorage.getItem('idiom') == 'en'){
             title.innerHTML = languageData.en.title
             name.innerHTML = languageData.en.name
             formation.innerHTML = languageData.en.formation
@@ -302,7 +307,7 @@
             skillsDesc.innerHTML = languageData.en.skillsdesc
             know.innerHTML = languageData.en.know
             textKnow.innerHTML = languageData.en.textknow
-        } else if(lang == 'pt'){
+        } else if(lang == 'pt' || localStorage.getItem('idiom') == 'pt'){
             title.innerHTML = languageData.pt.title
             name.innerHTML = languageData.pt.name
             formation.innerHTML = languageData.pt.formation
@@ -322,7 +327,7 @@
             skillsDesc.innerHTML = languageData.pt.skillsdesc
             know.innerHTML = languageData.pt.know
             textKnow.innerHTML = languageData.pt.textknow
-        } else if(lang == 'es') {
+        } else if(lang == 'es' || localStorage.getItem('idiom') == 'es') {
             title.innerHTML = languageData.es.title
             name.innerHTML = languageData.es.name
             formation.innerHTML = languageData.es.formation
@@ -344,6 +349,8 @@
             textKnow.innerHTML = languageData.es.textknow
         }
     }
+
+    translate();
 
     zapBtn.addEventListener('click', function() {
         const phoneNumber = '5537996620448';
