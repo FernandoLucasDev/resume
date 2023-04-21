@@ -33,9 +33,12 @@
                 <div class="bar-content">
                     <div class="icon-description">
                         <i class="fa-solid fa-language bar-icon" style="color: #7ed6ff;"></i>
-                        <p class="icon-label">Mudar idioma</p>
+                        <p class="icon-label" id="back-select-op">Mudar idioma</p>
                     </div>
-                    <div class="icon-description">
+                    <div id="back-select">
+                        
+                    </div>
+                    <div class="icon-description" onclick="">
                         <i class="fa-brands fa-linkedin bar-icon"></i>
                         <p class="icon-label">LinkedIn</p>
                     </div>
@@ -135,6 +138,13 @@
             </div>
         </div>
     </div>
+
+    <section name="whatsappBtn">
+        <div class="zap-btn" id="zap-btn">
+            <i class="fa-brands fa-whatsapp zap-icon"></i>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <i class="fa-solid fa-language footer-icon" style="color: #7ed6ff;"></i>
@@ -146,6 +156,45 @@
     </footer>
 </body>
 <script>
+    let space = document.getElementById('back-select');
+    let linkOp = document.getElementById('back-select-op');
+    let zapBtn = document.getElementById("zap-btn");
+
+    function appearSelect(){
+        let content = `<div class="lang-description">
+                            <form class="">
+                                <select id="lang" class="select-lang">
+                                    <option value="en">English</option>
+                                    <option value="pt">Português</option>
+                                    <option value="es">Español</option>
+                                </select>
+                                <button class="form-button" onclick="defineLang()">Confirmar</button>
+                            </form>
+                        </div>`
+
+        space.innerHTML += content;
+        linkOp.removeEventListener("click", appearSelect);
+    }
+
+    function removeSelect(){
+        space.innerHTML+= '';
+        linkOp.addEventListener("click", appearSelect);
+    }
+
+    linkOp.addEventListener("click", appearSelect);
+
+    function defineLang(){
+        let lang = document.getElementById("lang").value;
+        space.innerHTML = "";
+    }
+
+    zapBtn.addEventListener('click', function() {
+        const phoneNumber = '5537996620448';
+        const message = encodeURIComponent('Olá!');
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+        window.open(whatsappUrl);
+    });
+
     
 </script>
 </html>
