@@ -282,4 +282,10 @@ footer {
     .zap-btn {
         bottom: 4rem;
     }
+    .lang-description {
+        border-radius: 20px;
+        position: fixed;
+        bottom: 4rem;
+        left: 2rem;
+    }
 }
