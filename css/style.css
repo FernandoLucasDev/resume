@@ -190,6 +190,7 @@ footer {
     border-radius: 20px;
     display: flex;
     place-items: center start;
+    margin-bottom: 10px;
 }
 
 .progress {
